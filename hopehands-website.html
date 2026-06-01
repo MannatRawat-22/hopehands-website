@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HopeHands Foundation</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #1D9E75;
+    --green-light: #E1F5EE;
+    --green-dark: #0F6E56;
+    --blue-light: #E6F1FB;
+    --blue-mid: #185FA5;
+    --amber-light: #FAEEDA;
+    --amber-mid: #854F0B;
+    --purple-light: #EEEDFE;
+    --purple-mid: #3C3489;
+    --text: #1a1a1a;
+    --text-muted: #6b7280;
+    --border: rgba(0,0,0,0.1);
+    --bg: #ffffff;
+    --bg2: #f9f9f7;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--green-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    font-size: 14px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    font-size: 13px;
+    padding: 8px 18px;
+    border: 1px solid var(--green);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--green-dark);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+  }
+  .nav-cta:hover { background: var(--green); color: #fff; }
+
+  /* HERO */
+  .hero {
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 12px;
+    padding: 4px 14px;
+    border-radius: 99px;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.03em;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1.25;
+    max-width: 580px;
+    margin: 0 auto 1.25rem;
+  }
+  .hero p {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 460px;
+    margin: 0 auto 2rem;
+  }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 11px 28px;
+    background: var(--green);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--green-dark); }
+  .btn-outline {
+    padding: 11px 28px;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .btn-outline:hover { border-color: #999; }
+
+  /* STATS */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .stat {
+    text-align: center;
+    padding: 2rem 1rem;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--green);
+  }
+  .stat-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+  /* SECTIONS */
+  .section { padding: 3rem 2rem; border-bottom: 1px solid var(--border); }
+  .section-alt { background: var(--bg2); }
+  .section-tag {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--green-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+  }
+  .section > p {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 520px;
+  }
+
+  /* CARDS */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 1.75rem;
+  }
+  .card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .card-icon { font-size: 22px; margin-bottom: 0.75rem; }
+  .card h3 { font-size: 15px; font-weight: 500; margin-bottom: 0.4rem; }
+  .card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  /* CAUSES */
+  .causes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 1.75rem;
+  }
+  .cause { border-radius: 12px; padding: 1.5rem; border: 1px solid transparent; }
+  .cause.green { background: var(--green-light); border-color: #9FE1CB; }
+  .cause.blue  { background: var(--blue-light);  border-color: #B5D4F4; }
+  .cause.amber { background: var(--amber-light); border-color: #FAC775; }
+  .cause-icon { font-size: 22px; margin-bottom: 0.75rem; }
+  .cause.green .cause-icon { color: var(--green-dark); }
+  .cause.blue  .cause-icon { color: var(--blue-mid); }
+  .cause.amber .cause-icon { color: var(--amber-mid); }
+  .cause h3 { font-size: 15px; font-weight: 500; margin-bottom: 0.4rem; }
+  .cause.green h3 { color: #085041; }
+  .cause.blue  h3 { color: #0C447C; }
+  .cause.amber h3 { color: #633806; }
+  .cause p { font-size: 13px; line-height: 1.6; }
+  .cause.green p { color: var(--green-dark); }
+  .cause.blue  p { color: var(--blue-mid); }
+  .cause.amber p { color: var(--amber-mid); }
+
+  /* TEAM */
+  .team {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+    margin-top: 1.75rem;
+  }
+  .member { text-align: center; }
+  .avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0 auto 0.75rem;
+  }
+  .member h4 { font-size: 14px; font-weight: 500; }
+  .member p { font-size: 13px; color: var(--text-muted); }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1.75rem;
+  }
+  @media (max-width: 600px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-info { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item { display: flex; gap: 12px; align-items: flex-start; }
+  .contact-item-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--green-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+    color: var(--green-dark);
+  }
+  .contact-item h4 { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+  .contact-item p { font-size: 13px; color: var(--text-muted); }
+  .contact-form { display: flex; flex-direction: column; gap: 10px; }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus { border-color: var(--green); }
+  .contact-form textarea { height: 110px; resize: none; }
+
+  /* FOOTER */
+  footer {
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  footer p { font-size: 13px; color: var(--text-muted); }
+  .footer-links { display: flex; gap: 1.25rem; }
+  .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; }
+  .footer-links a:hover { color: var(--text); }
+
+  /* MOBILE NAV */
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .hero h1 { font-size: 30px; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1D9E75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+    HopeHands
+  </div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#causes">Causes</a>
+    <a href="#team">Team</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Donate</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">&#x1F33F; Making a difference since 2015</div>
+  <h1>Empowering communities, one life at a time</h1>
+  <p>HopeHands is a non-profit dedicated to education, clean water, and food security for underserved communities across India and beyond.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Donate now</button>
+    <button class="btn-outline" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn more</button>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">12,400+</div><div class="stat-label">Lives impacted</div></div>
+  <div class="stat"><div class="stat-num">38</div><div class="stat-label">Villages reached</div></div>
+  <div class="stat"><div class="stat-num">6</div><div class="stat-label">Active programmes</div></div>
+  <div class="stat"><div class="stat-num">94%</div><div class="stat-label">Funds to field</div></div>
+</div>
+
+<!-- ABOUT -->
+<section class="section section-alt" id="about">
+  <div class="section-tag">About us</div>
+  <h2>Who we are</h2>
+  <p>Founded in 2015, HopeHands works with local communities to build lasting solutions — not short-term aid. We believe every person deserves access to clean water, quality education, and nutritious food regardless of where they are born.</p>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">&#128065;</div>
+      <h3>Our vision</h3>
+      <p>A world where no child goes to bed hungry or grows up without access to education.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">&#127919;</div>
+      <h3>Our mission</h3>
+      <p>To deliver community-led programmes that create sustainable change from the ground up.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">&#128737;</div>
+      <h3>Our values</h3>
+      <p>Transparency, dignity, and community ownership in everything we do.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CAUSES -->
+<section class="section" id="causes">
+  <div class="section-tag">Our work</div>
+  <h2>Causes we support</h2>
+  <p>We focus on three core areas where sustained investment creates the greatest long-term impact.</p>
+  <div class="causes">
+    <div class="cause green">
+      <div class="cause-icon">&#128167;</div>
+      <h3>Clean water</h3>
+      <p>Installing wells and water purification systems in 38 villages. Over 8,000 people now have safe drinking water.</p>
+    </div>
+    <div class="cause blue">
+      <div class="cause-icon">&#127979;</div>
+      <h3>Education</h3>
+      <p>Running 12 community learning centres providing free education to 2,100+ children every year.</p>
+    </div>
+    <div class="cause amber">
+      <div class="cause-icon">&#127822;</div>
+      <h3>Food security</h3>
+      <p>Distributing nutritious meals and training families in sustainable farming and kitchen gardening.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section section-alt" id="team">
+  <div class="section-tag">Our people</div>
+  <h2>Meet the team</h2>
+  <p>A small, dedicated group of changemakers committed to our mission every single day.</p>
+  <div class="team">
+    <div class="member">
+      <div class="avatar" style="background:#E1F5EE;color:#0F6E56;">AR</div>
+      <h4>Ananya Rao</h4>
+      <p>Founder &amp; Director</p>
+    </div>
+    <div class="member">
+      <div class="avatar" style="background:#E6F1FB;color:#185FA5;">SK</div>
+      <h4>Sameer Khan</h4>
+      <p>Head of Programmes</p>
+    </div>
+    <div class="member">
+      <div class="avatar" style="background:#FAEEDA;color:#854F0B;">PM</div>
+      <h4>Priya Mehta</h4>
+      <p>Community Outreach</p>
+    </div>
+    <div class="member">
+      <div class="avatar" style="background:#EEEDFE;color:#3C3489;">RV</div>
+      <h4>Rahul Verma</h4>
+      <p>Finance &amp; Operations</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="section-tag">Get involved</div>
+  <h2>Contact us or donate</h2>
+  <p>Whether you want to volunteer, donate, or simply learn more — we'd love to hear from you.</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-item-icon">&#128205;</div>
+        <div>
+          <h4>Address</h4>
+          <p>12 Community Lane, Pune, Maharashtra 411001, India</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">&#9993;</div>
+        <div>
+          <h4>Email</h4>
+          <p>hello@hopehands.org</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">&#128222;</div>
+        <div>
+          <h4>Phone</h4>
+          <p>+91 98765 43210</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">&#128337;</div>
+        <div>
+          <h4>Working hours</h4>
+          <p>Mon–Sat, 9 AM – 6 PM IST</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <input type="text" placeholder="Your name" required />
+        <input type="email" placeholder="Email address" required />
+        <input type="text" placeholder="Subject (e.g. Donation / Volunteer)" />
+        <textarea placeholder="Your message..."></textarea>
+        <button type="submit" class="btn-primary">Send message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&#169; 2026 HopeHands Foundation. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#">Privacy policy</a>
+    <a href="#">Annual report</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  alert('Thank you for reaching out! We will get back to you within 48 hours.');
+  e.target.reset();
+}
+</script>
+</body>
+</html>
